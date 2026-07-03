@@ -1670,6 +1670,32 @@ window.addEventListener('resize', () => {
   }
 });
 
+// Auto-close the mobile dropdown menu as soon as the page is scrolled,
+// so the "3-dot" (hamburger) panel doesn't stay stuck open while scrolling.
+(function () {
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const links = document.querySelector('.nav-links');
+    if (links && links.classList.contains('nav-open')) {
+      // Close on any real scroll movement (small threshold avoids
+      // accidental closes from momentum jitter on mobile).
+      if (Math.abs(window.scrollY - lastScrollY) > 4) {
+        links.classList.remove('nav-open');
+      }
+    }
+    lastScrollY = window.scrollY;
+  }, { passive: true });
+
+  // Also close on touchmove for mobile devices where scroll events
+  // can fire late/inconsistently while the finger is still moving.
+  document.addEventListener('touchmove', () => {
+    const links = document.querySelector('.nav-links');
+    if (links && links.classList.contains('nav-open')) {
+      links.classList.remove('nav-open');
+    }
+  }, { passive: true });
+})();
+
 // WhatsApp number - set your number here
 const WA_NUMBER = '8801570219399';
 document.querySelectorAll('[id$="whatsapp"]').forEach(el => {
