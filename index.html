@@ -329,6 +329,44 @@
     border-radius: 10px; padding: 16px 18px;
     font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9);
   }
+  .ai-free {
+    margin-top: 44px; padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    position: relative; z-index: 1;
+  }
+  .ai-free h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 8px; }
+  .ai-free .ai-free-desc { margin-bottom: 22px; font-size: 14px; }
+  .ai-free-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .ai-free-card {
+    display: block; text-decoration: none; color: inherit;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 14px; padding: 22px;
+    transition: transform .3s, background .3s, border-color .3s;
+  }
+  .ai-free-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.13);
+    border-color: rgba(127,239,255,0.55);
+  }
+  .ai-free-badge {
+    display: inline-block; font-size: 10px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: #7FEFFF; background: rgba(25,211,255,0.16);
+    border: 1px solid rgba(25,211,255,0.4);
+    padding: 3px 10px; border-radius: 20px; margin-bottom: 14px;
+  }
+  .ai-free-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .ai-free-card p { font-size: 13px; margin-bottom: 16px; max-width: none; color: rgba(255,255,255,0.75); }
+  .ai-free-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 700; color: #7FEFFF;
+  }
+  .ai-free-link svg { transition: transform .3s; }
+  .ai-free-card:hover .ai-free-link svg { transform: translateX(3px); }
 
   /* ── PRICING ── */
   .pricing-bg { background: var(--card-bg); }
@@ -1328,6 +1366,19 @@ footer{background:linear-gradient(135deg,#0B1240 0%,#2A1B8A 100%)}
       <div class="ai-item">Smart Accounting Workflow</div>
       <div class="ai-item">Business Automation</div>
       <div class="ai-item">Digital Transformation</div>
+    </div>
+
+    <div class="ai-free" id="ai-free-products">
+      <h3>Use Our Free Products</h3>
+      <p class="ai-free-desc">Try our AI-powered tools right in your browser — completely free.</p>
+      <div class="ai-free-grid">
+        <a href="https://bank-statement-converter-fawn.vercel.app/" target="_blank" rel="noopener" class="ai-free-card">
+          <div class="ai-free-badge">Free Tool</div>
+          <h4>Bank Statement Converter</h4>
+          <p>Convert bank statements into clean, structured data ready for accounting and reconciliation.</p>
+          <div class="ai-free-link">Try it now <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+        </a>
+      </div>
     </div>
   </div>
 </div>
