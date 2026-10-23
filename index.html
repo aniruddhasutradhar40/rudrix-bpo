@@ -231,6 +231,45 @@
     background: var(--blue-light);
   }
 
+  /* ── ACCOUNTS & FINANCE BPO SERVICE ── */
+  .bpo-service-bg { background: var(--white); padding: 56px 5%; }
+  .bpo-service-card {
+    max-width: 880px; margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 36px 32px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 16px;
+    position: relative; overflow: hidden;
+  }
+  .bpo-service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+  }
+  .bpo-logo-link { display: inline-block; line-height: 0; transition: transform .3s; }
+  .bpo-logo-link:hover { transform: translateY(-2px); }
+  .bpo-logo-link img { height: 84px; width: auto; max-width: 100%; display: block; }
+  .bpo-service-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800; color: var(--text-dark); line-height: 1.25;
+  }
+  .bpo-service-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue); color: var(--white);
+    font-size: 14px; font-weight: 700; text-decoration: none;
+    padding: 12px 26px; border-radius: 30px; transition: all .3s;
+  }
+  .bpo-service-btn:hover { background: var(--blue-light); transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+  .bpo-service-btn svg { transition: transform .3s; }
+  .bpo-service-btn:hover svg { transform: translateX(3px); }
+  @media (max-width: 600px) {
+    .bpo-service-bg { padding: 40px 4%; }
+    .bpo-service-card { padding: 28px 18px; }
+    .bpo-logo-link img { height: 64px; }
+  }
+
   /* ── FREE PRODUCTS ── */
   .free-products-bg { background: var(--card-bg); }
   .free-products-grid {
@@ -633,6 +672,7 @@
   }
   .fb-icon { background: #E9EDFF; }
   .li-icon { background: #EEF1FF; }
+  .yt-icon { background: #FFECEC; }
   .em-icon { background: var(--blue-pale); }
   .email-row { justify-content: space-between; padding-right: 12px; }
   .email-link-inner {
@@ -990,6 +1030,17 @@ footer{background:linear-gradient(135deg,#0B1240 0%,#2A1B8A 100%)}
         <p>Enterprise-grade protection</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ACCOUNT'S & FINANCE BPO SERVICE -->
+<section class="bpo-service-bg" id="bpo-service">
+  <div class="bpo-service-card">
+    <a href="https://accobpo.online/" target="_blank" rel="noopener" class="bpo-logo-link" aria-label="Account's &amp; Finance BPO Service">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi9VQ8aYiyFVT-8Roge3oSeRV1yd3I-RO22j2ZZx1Rqe_UgsHEc6-jAUQfp-NgFyRNMSxO7YeYC9j1vJ4kT_1OcBtoL3rltcNDeIeP8qBTd99LOh3-u3euxxvQU4fYqsLMMDsolP_RHMhivwB9m9As7M7tIp6yrst-pQMdv2Gz8zK0qA-yHDdvI1lykOirE/s2000/Untitled%20design%20(1).png" alt="Account's &amp; Finance BPO Service Logo">
+    </a>
+    <h2 class="bpo-service-title">Account's &amp; Finance BPO Service</h2>
+    <a href="https://accobpo.online/" target="_blank" rel="noopener" class="bpo-service-btn">Click Here <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
   </div>
 </section>
 
@@ -1377,18 +1428,6 @@ footer{background:linear-gradient(135deg,#0B1240 0%,#2A1B8A 100%)}
       <div class="ai-item">Digital Transformation</div>
     </div>
 
-    <div class="ai-free" id="ai-free-products">
-      <h3>Use Our Free Products</h3>
-      <p class="ai-free-desc">Try our AI-powered tools right in your browser — completely free.</p>
-      <div class="ai-free-grid">
-        <a href="https://bank-statement-converter-fawn.vercel.app/" target="_blank" rel="noopener" class="ai-free-card">
-          <div class="ai-free-badge">Free Tool</div>
-          <h4>Bank Statement Converter</h4>
-          <p>Convert bank statements into clean, structured data ready for accounting and reconciliation.</p>
-          <div class="ai-free-link">Try it now <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
-        </a>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -1880,11 +1919,11 @@ footer{background:linear-gradient(135deg,#0B1240 0%,#2A1B8A 100%)}
     <div>
       <div class="section-label" style="margin-bottom: 16px;">Connect With Us</div>
       <div class="contact-socials">
-        <a href="https://www.facebook.com/rudrixtechnologies" target="_blank" class="social-link">
-          <div class="social-icon fb-icon">
-            <svg width="20" height="20" fill="#1877F2" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <a href="https://www.youtube.com/@aniruddha_sutradhar" target="_blank" rel="noopener" class="social-link">
+          <div class="social-icon yt-icon">
+            <svg width="20" height="20" fill="#FF0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </div>
-          <span>Facebook — Rudrix Technologies</span>
+          <span>YouTube — Rudrix Technologies</span>
         </a>
         <a href="https://www.linkedin.com/company/rudrix-technologies/" target="_blank" class="social-link">
           <div class="social-icon li-icon">
@@ -1903,6 +1942,12 @@ footer{background:linear-gradient(135deg,#0B1240 0%,#2A1B8A 100%)}
             <svg width="16" height="16" fill="none" stroke="#2B3FE8" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
             <span class="copy-tooltip" id="copy-email-tooltip">Copy</span>
           </button>
+        </div>
+        <div class="social-link location-row">
+          <div class="social-icon em-icon">
+            <svg width="20" height="20" fill="none" stroke="#2B3FE8" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <span>Dhaka, Bangladesh</span>
         </div>
       </div>
     </div>
