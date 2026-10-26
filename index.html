@@ -697,6 +697,24 @@
   }
   .copy-email-btn.copied .copy-tooltip { opacity: 1; }
 
+  /* ── NEWSLETTER (under Connect With Us) ── */
+  .newsletter-box {
+    margin-top: 16px; padding: 20px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .newsletter-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .newsletter-title { font-weight: 700; font-size: 15px; color: var(--text-dark); }
+  .newsletter-note { color: var(--text-light); font-size: 13.5px; line-height: 1.65; margin: 0 0 16px; }
+  .newsletter-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px 22px; border-radius: var(--radius-sm);
+    background: var(--grad); color: #fff; font-weight: 600; font-size: 14px;
+    text-decoration: none; transition: all .2s;
+  }
+  .newsletter-btn:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  @media (max-width: 768px) { .newsletter-btn { width: 100%; } }
+
   /* ── FOOTER ── */
   footer {
     background: var(--text-dark); color: rgba(255,255,255,0.7);
@@ -1965,6 +1983,20 @@ footer{background:linear-gradient(135deg,#0B1240 0%,#2A1B8A 100%)}
           </div>
           <span>Dhaka, Bangladesh</span>
         </div>
+      </div>
+      <!-- NEWSLETTER -->
+      <div class="newsletter-box" id="newsletter">
+        <div class="newsletter-head">
+          <div class="social-icon em-icon">
+            <svg width="20" height="20" fill="none" stroke="#2B3FE8" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="newsletter-title">Email Subscribe Us</div>
+        </div>
+        <p class="newsletter-note">Subscribe to stay updated on Accounting &amp; Finance, Data Analysis, AI Engineering, Personal Branding, and the latest AI &amp; Technology trends.</p>
+        <a href="https://rudrixtechnologies.online/newsletter/" target="_blank" rel="noopener" class="newsletter-btn">
+          Newsletter Subscribe
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
     </div>
   </div>
