@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Your Free Resource | Rudrix Technologies</title>
+<meta name="description" content="Enter your name and email to access your free resource.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --purple:#7c3aed;
+    --blue:#2563eb;
+    --cyan:#06b6d4;
+    --ink:#0f172a;
+    --muted:#64748b;
+    --line:#e2e8f0;
+    --lavender:#f3efff;
+    --grad:linear-gradient(90deg,var(--purple),var(--blue),var(--cyan));
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%}
+  body{
+    font-family:'Inter','Segoe UI',system-ui,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(900px 500px at 15% 0%, #e9e1ff 0%, transparent 60%),
+      radial-gradient(800px 500px at 100% 100%, #e3f1ff 0%, transparent 60%),
+      var(--lavender);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:32px 16px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Card with gradient border + glow ---------- */
+  .card-wrap{
+    position:relative;
+    width:100%;max-width:520px;
+    padding:2px;                       /* border thickness */
+    border-radius:38px;
+    background:linear-gradient(135deg,var(--purple) 0%,var(--blue) 50%,var(--cyan) 100%);
+    box-shadow:
+      0 0 0 1px rgba(124,58,237,.06),
+      0 20px 50px -12px rgba(37,99,235,.25),
+      0 0 60px -10px rgba(6,182,212,.30);
+    animation:rise .8s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .card-wrap::before{               /* soft premium glow */
+    content:"";position:absolute;inset:-14px;border-radius:50px;z-index:-1;
+    background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(37,99,235,.22),rgba(6,182,212,.28));
+    filter:blur(28px);opacity:.7;
+  }
+  .card{
+    position:relative;overflow:hidden;
+    background:#FFFFFF;                /* pure white interior */
+    border-radius:36px;
+    padding:56px 44px 40px;
+  }
+  .card::before{                      /* top gradient bar */
+    content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--grad);
+  }
+
+  /* ---------- Header ---------- */
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--blue);background:#eef4ff;border:1px solid #dbe7ff;
+    padding:7px 14px;border-radius:999px;margin-bottom:22px;
+  }
+  .badge i{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(6,182,212,.18);animation:blink 1.2s ease-in-out infinite}
+  h1{
+    font-size:clamp(26px,5.4vw,34px);line-height:1.2;font-weight:800;letter-spacing:-.02em;margin-bottom:12px;
+  }
+  h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);font-size:15.5px;line-height:1.65;margin-bottom:32px}
+
+  /* ---------- Form ---------- */
+  .field{margin-bottom:20px}
+  label{display:block;font-size:13.5px;font-weight:600;margin-bottom:8px;color:#1e293b}
+  label .req{color:#ef4444;margin-left:2px}
+  label .opt{color:#94a3b8;font-weight:500;font-size:12.5px;margin-left:4px}
+  .input{
+    width:100%;height:54px;padding:0 18px;
+    font:inherit;font-size:15.5px;color:var(--ink);
+    background:#fff;border:1.5px solid var(--line);border-radius:14px;outline:none;
+    transition:border-color .2s, box-shadow .2s, transform .2s;
+  }
+  .input::placeholder{color:#a3aec2}
+  .input:hover{border-color:#cbd5e1}
+  .input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.12)}
+  .input.invalid{border-color:#ef4444;box-shadow:0 0 0 4px rgba(239,68,68,.10)}
+  .err{display:none;color:#dc2626;font-size:12.5px;margin-top:6px}
+  .field.has-error .err{display:block}
+
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+
+  .btn{
+    position:relative;width:100%;height:56px;margin-top:8px;border:0;cursor:pointer;
+    font:inherit;font-size:16.5px;font-weight:700;color:#fff;letter-spacing:.01em;
+    border-radius:14px;background:linear-gradient(90deg,var(--purple),var(--blue) 55%,var(--cyan));
+    box-shadow:0 12px 24px -8px rgba(37,99,235,.55);
+    transition:transform .2s, box-shadow .2s, filter .2s;
+    display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px -8px rgba(37,99,235,.6);filter:brightness(1.04)}
+  .btn:active{transform:translateY(0)}
+  .btn:disabled{cursor:not-allowed;opacity:.85;transform:none}
+  .spinner{display:none;width:20px;height:20px;border:3px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+  .btn.loading .spinner{display:block}
+  .privacy{
+    margin:18px auto 0;width:fit-content;max-width:100%;
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    padding:9px 16px;border-radius:999px;
+    background:#f8faff;border:1px solid #e3ebff;
+    color:#64748b;font-size:12.5px;font-weight:500;line-height:1.3;text-align:left;
+  }
+  .privacy .lock{flex:none;width:16px;height:16px;filter:drop-shadow(0 2px 3px rgba(37,99,235,.35))}
+  .form-error{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;background:#fef2f2;border:1px solid #fecaca;color:#b91c1c;font-size:13.5px}
+
+  /* ---------- Success ---------- */
+  #success{display:none;text-align:center;animation:fade .6s ease both}
+  .check{
+    width:76px;height:76px;margin:0 auto 22px;border-radius:50%;
+    background:var(--grad);display:grid;place-items:center;
+    box-shadow:0 14px 30px -8px rgba(37,99,235,.5);
+    animation:pop .6s cubic-bezier(.2,1.4,.4,1) both;
+  }
+  .check svg{width:38px;height:38px;stroke:#fff;stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round;
+    stroke-dasharray:40;stroke-dashoffset:40;animation:draw .6s .3s ease forwards}
+  #success h2{font-size:26px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+  #success p{color:var(--muted);font-size:15px;line-height:1.6;margin-bottom:24px}
+  .link-box{
+    display:flex;align-items:center;gap:10px;text-align:left;
+    padding:14px 16px;border:1.5px dashed #c7d7fe;background:#f8faff;border-radius:14px;margin-bottom:6px;
+  }
+  .link-box svg{flex:none;width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .link-box a{color:var(--blue);font-weight:600;font-size:14.5px;word-break:break-all;text-decoration:none}
+  .link-box a:hover{text-decoration:underline}
+
+  /* ---------- Footer ---------- */
+  footer{margin-top:28px;text-align:center;font-size:14px;color:#6b7280;animation:fade 1s .3s ease both}
+  footer a{color:var(--blue);font-weight:700;text-decoration:none;border-bottom:1.5px solid transparent;transition:border-color .2s,color .2s}
+  footer a:hover{color:var(--purple);border-color:var(--purple)}
+
+  /* ---------- Animations ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(26px) scale(.98)}to{opacity:1;transform:none}}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes blink{
+    0%,100%{opacity:1;box-shadow:0 0 0 4px rgba(6,182,212,.18)}
+    50%{opacity:.25;box-shadow:0 0 0 8px rgba(6,182,212,0)}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:520px){
+    body{padding:20px 12px}
+    .card-wrap{border-radius:30px}
+    .card{border-radius:28px;padding:48px 24px 30px}
+    .input{height:52px}
+  }
+</style>
+</head>
+<body>
+
+<main class="card-wrap">
+  <div class="card">
+
+    <!-- ============ FORM VIEW ============ -->
+    <section id="formView">
+      <div class="badge"><i></i> Free Resource</div>
+      <h1>Get your <span>free resource</span> today</h1>
+      <p class="sub">Fill out the form below and get instant access to your resource.</p>
+
+      <form id="leadForm" novalidate>
+        <div class="field" id="f-name">
+          <label for="name">Name <span class="req">*</span></label>
+          <input class="input" type="text" id="name" name="name" placeholder="Your full name" autocomplete="name">
+          <div class="err">Please enter your name.</div>
+        </div>
+
+        <div class="field" id="f-email">
+          <label for="email">Email <span class="req">*</span></label>
+          <input class="input" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
+          <div class="err">Please enter a valid email address.</div>
+        </div>
+
+        <div class="field" id="f-wa">
+          <label for="whatsapp">WhatsApp Number <span class="opt">(Optional)</span></label>
+          <input class="input" type="tel" id="whatsapp" name="whatsapp" placeholder="+8801XXXXXXXXX" autocomplete="tel">
+          <div class="err">Please enter a valid number (digits, +, spaces and dashes only).</div>
+        </div>
+
+        <!-- honeypot (spam protection) -->
+        <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <button type="submit" class="btn" id="submitBtn">
+          <span class="spinner"></span><span id="btnText">Get Resource</span>
+        </button>
+        <div class="form-error" id="formError"></div>
+        <p class="privacy">
+          <svg class="lock" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="lockGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#7c3aed"/>
+                <stop offset=".55" stop-color="#2563eb"/>
+                <stop offset="1" stop-color="#06b6d4"/>
+              </linearGradient>
+            </defs>
+            <path d="M8 10V7.5a4 4 0 018 0V10" fill="none" stroke="url(#lockGrad)" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="4.5" y="10" width="15" height="10.5" rx="3.2" fill="url(#lockGrad)"/>
+            <circle cx="12" cy="14.4" r="1.5" fill="#fff"/>
+            <rect x="11.2" y="14.8" width="1.6" height="2.9" rx=".8" fill="#fff"/>
+          </svg>
+          <span>Your information is safe and will never be shared.</span>
+        </p>
+      </form>
+    </section>
+
+    <!-- ============ SUCCESS VIEW ============ -->
+    <section id="success">
+      <div class="check">
+        <svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h2>Submitted successfully!</h2>
+      <p>Thank you, <strong id="thanksName"></strong>! Your resource link is below.</p>
+
+      <div class="link-box">
+        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.07 0l3-3a5 5 0 00-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 00-7.07 0l-3 3a5 5 0 007.07 7.07l1.5-1.5"/></svg>
+        <a href="https://rudrixtechnologies.online/" target="_blank" rel="noopener noreferrer">https://rudrixtechnologies.online/</a>
+      </div>
+
+      <a class="btn" href="https://rudrixtechnologies.online/" target="_blank" rel="noopener noreferrer">
+        Visit Resource
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      </a>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  Powered by <a href="https://rudrixtechnologies.online/" target="_blank" rel="noopener noreferrer">Rudrix Technologies</a>
+</footer>
+
+<script>
+  /* ============================================================
+     ⚙️ CONFIG — Paste your Apps Script Web App URL here
+     ============================================================ */
+  const SCRIPT_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
+
+  const form      = document.getElementById("leadForm");
+  const btn       = document.getElementById("submitBtn");
+  const btnText   = document.getElementById("btnText");
+  const formView  = document.getElementById("formView");
+  const successEl = document.getElementById("success");
+  const formError = document.getElementById("formError");
+
+  const $ = (id) => document.getElementById(id);
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const phoneRe = /^\+?[0-9\s\-()]{7,18}$/;
+
+  function setError(fieldId, inputId, bad){
+    $(fieldId).classList.toggle("has-error", bad);
+    $(inputId).classList.toggle("invalid", bad);
+  }
+
+  function validate(){
+    const name  = $("name").value.trim();
+    const email = $("email").value.trim();
+    const wa    = $("whatsapp").value.trim();
+
+    const nameBad  = name.length < 2;
+    const emailBad = !emailRe.test(email);
+    const waBad    = wa !== "" && !phoneRe.test(wa);   // optional: validate only if filled
+
+    setError("f-name","name",nameBad);
+    setError("f-email","email",emailBad);
+    setError("f-wa","whatsapp",waBad);
+
+    return !(nameBad || emailBad || waBad);
+  }
+
+  // clear errors while typing
+  ["name","email","whatsapp"].forEach(id=>{
+    $(id).addEventListener("input",()=>{
+      const map={name:"f-name",email:"f-email",whatsapp:"f-wa"};
+      setError(map[id],id,false);
+      formError.style.display="none";
+    });
+  });
+
+  function setLoading(on){
+    btn.disabled = on;
+    btn.classList.toggle("loading", on);
+    btnText.textContent = on ? "Submitting..." : "Get Resource";
+  }
+
+  form.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    formError.style.display = "none";
+
+    // honeypot: bots fill this; silently pretend success
+    if (form.company.value) { showSuccess(); return; }
+
+    if(!validate()) return;
+
+    if (!SCRIPT_URL || SCRIPT_URL.indexOf("PASTE_YOUR") === 0){
+      formError.textContent = "SCRIPT_URL is not set. Paste your Apps Script Web App URL into index.html.";
+      formError.style.display = "block";
+      return;
+    }
+
+    const payload = new URLSearchParams({
+      name:     $("name").value.trim(),
+      email:    $("email").value.trim(),
+      whatsapp: $("whatsapp").value.trim()
+    });
+
+    setLoading(true);
+    try{
+      // no-cors avoids Apps Script CORS issues. The response can't be read, but the data is saved.
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+        body: payload.toString()
+      });
+      showSuccess();
+    }catch(err){
+      console.error(err);
+      formError.textContent = "Submission failed. Please check your internet connection and try again.";
+      formError.style.display = "block";
+    }finally{
+      setLoading(false);
+    }
+  });
+
+  function showSuccess(){
+    $("thanksName").textContent = $("name").value.trim();
+    formView.style.display = "none";
+    successEl.style.display = "block";
+  }
+</script>
+</body>
+</html>
